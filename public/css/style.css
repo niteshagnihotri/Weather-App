@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap');
+body{
+    display:flex;
+    flex-direction: column;
+   
+}
+#navbar{
+    color: white; 
+    background-color: rgb(18, 18, 49);
+    width: 100%;
+}
+.nav-link{
+    color: rgb(233, 223, 223);
+}
+#main{
+    background-color: whitesmoke;
+    padding-top:6em;
+    border: 0;
+    margin-bottom: 0;
+    height: 80vh;    
+}
+.fa-snowflake{
+    transition: all linear;
+    animation: rot 2s linear infinite;
+    color: rgb(71, 169, 250);
+}
+@keyframes rot{
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+.heading{
+    font-size: 30px;
+}
+.blockquote-footer{
+    margin: 15px;
+}

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>getweather.com</title>
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/style.css">
+     <link rel="stylesheet" href="css/responsive.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"  crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+<style>
+.daytime{
+    background-color: whitesmoke;
+    display: flex;
+    flex-direction: column;
+    
+}
+.card{
+    color: whitesmoke;
+    font-weight: 500;
+    display: flex;
+    background-color: rgb(19, 28, 56);
+    width: 20rem;
+    height: 10rem;
+    border-radius: 15px;
+    margin: auto;
+    margin-top: 15px;
+    font-family: 'EB Garamond', serif;
+}
+#wronginput{
+    display: none;
+    color: red;
+    font-weight: 500;
+    font-size: 1.3rem;
+    padding:10px 4px;
+}
+#maincard{
+    display: none;
+}
+</style>
+
+</head>
+<body>
+    {{>navbar}}
+
+    <!-- Weather main-->
+    
+    <div id="margin-padding" class="col-md-10 col-12 mx-auto">
+    <div id="main" class="alert alert-success" role="alert">
+
+     <!-- day time--> 
+    <div class="daytime">
+        <h5 class="card-title" id="date" style="font-size: 1.3em; line-height: 1.5em;">June 19, 2021</h5>
+        <h5 class="card-title" id="time" style="font-size: 1.3em;line-height: 0.9em;margin-bottom:2em">08:06 PM</h5>
+    </div>
+
+    <!--form-->
+        <p style="color:black; font-size:1.8em;">Get the Latest <span style="color:rgb(0, 174, 255);font-weight:600"
+             id="weatherclick">Weather</span> of Your City</p>
+                      
+        <div class="main-content" style="margin: 10px 0px;">
+            <form class="temp_form">
+                <input style="border:1px; padding:10px" type="text" placeholder="Enter your city name" autocomplete="off"
+                 type="text" id="cityname">
+            </form>
+        </div>
+
+             <button id="submitbtn" type="button" class="btn btn-primary">Check Now</button>
+        
+    <!--Error Message-->
+
+            <h4 id="wronginput" class="wronginput">Please Enter City Name :)</h4>
+        
+        <!--Card-->
+        <div class="card" id="maincard" >
+             <div  class="card-body">           
+                 <h5 class="card-title" id="citydisplay" style="font-size: 1.5em;font-weight:600;
+        color:whitesmoke;">Dewas,In
+      </h5>
+
+                 <h5 class="card-title" id="temp" style="font-weight:400;font-size:1.8em;position:absolute;
+        bottom:0;margin-bottom:25px">27&deg;C, Sunny</h5>
+            </div>   
+        </div>
+    </div>
+</div>  
+
+{{>weatherjs}}
+</body>
+</html>

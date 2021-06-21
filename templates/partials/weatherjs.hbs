@@ -1,0 +1,102 @@
+
+<script type="text/javascript">
+    let curDate = document.getElementById('date');
+    let curTime = document.getElementById('time');
+    
+    const submitbtn = document.getElementById('submitbtn');
+    const cityname = document.getElementById('cityname');
+
+    const citydisplay = document.getElementById('citydisplay');
+    const error = document.getElementById('wronginput');
+    const temp = document.getElementById('temp');
+
+    const card = document.getElementById('maincard');
+ 
+    const getInfo = async(event) =>{
+        //event.preventDefault();
+        let cityval = cityname.value;
+
+        if(cityval==""){
+           error.style.display="block";
+        }
+        else{
+            try{
+            let url = `https://api.openweathermap.org/data/2.5/weather?q=${cityval}&appid=11fc6cfb040d1eacfdc1de9d3277d522`;
+            const response = await fetch(url);
+           
+            const data = await response.json();
+            const arrData = [data];
+            let cardcity = arrData[0].name;
+
+            let country = arrData[0].sys.country;
+            citydisplay.innerText = `${cardcity},${country}`;
+
+            let curTemp = Number((arrData[0].main.temp-273.15).toFixed(2));
+            let tempStatus=arrData[0].weather[0].main;
+            temp.innerText = `${curTemp}, ${tempStatus}`;
+           error.style.display="none";
+            card.style.display="block";
+           
+            }
+            catch(err){
+                    console.error("url not found");
+                error.style.display="block";
+                error.innerHTML="City Not Found";
+            }    
+        }
+    }    
+    submitbtn.addEventListener('click', getInfo);
+    cityname.addEventListener('keydown', function(e){
+    var keycode = e.keyCode;
+    if(keycode === 13)
+    {
+        e.preventDefault();
+        getInfo();     
+    }
+    });
+
+       const getCurrentDay = () =>
+          {
+            var weekday = new Array(7);
+            weekday[0] = "Sun";
+            weekday[1] = "Mon";
+            weekday[2] = "Tue";
+            weekday[3] = "Wed";
+            weekday[4] = "Thu";
+            weekday[5] = "Fri";
+            weekday[6] = "Sat";
+            let currentTime = new Date;
+              return `${weekday[currentTime.getDay()]}`.toUpperCase();
+          };
+
+        const months = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEPT","OCT","NOV","DEC"];
+
+    let now = new Date();
+    let hours = now.getHours();
+    let mins = now.getMinutes();
+    let periods = "AM";
+
+    if(hours>11)
+        {
+            periods = "PM";
+            if(hours>12) hours-=12;
+        }
+    if(hours<10)
+        {
+             hours = "0"+hours;
+        }
+            
+    if(mins<10)
+        {
+            mins = "0"+mins;
+        }
+        let time = hours+":"+mins+" "+periods;
+        var date = now.getDate();
+        var month = now.getMonth();
+        var year = now.getFullYear();
+        new_month = months[month];
+
+        curDate.innerHTML = `${getCurrentDay()}, ${new_month} ${date}, ${year}`;
+        curTime.innerHTML = `${time}`;
+    
+</script>
